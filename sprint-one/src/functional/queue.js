@@ -9,8 +9,7 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    debugger;
-    if (Object.keys(storage).length > 0){
+    if (Object.keys(storage).length > 0) {
       storage[Math.max.apply(null, Object.keys(storage)) + 1] = value;
     } else {
       storage[0] = value;
@@ -19,7 +18,6 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    debugger;
     if (items > 0) {
       items--;
     }
