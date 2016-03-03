@@ -5,15 +5,14 @@ var Queue = function() {
   var storage = {};
 
   var items = 0;
+  var max = 0;
+  var min = 0;
 
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    if (Object.keys(storage).length > 0) {
-      storage[Math.max.apply(null, Object.keys(storage)) + 1] = value;
-    } else {
-      storage[0] = value;
-    }
+    storage[max] = value;
+    max++;
     items++;
   };
 
@@ -21,10 +20,10 @@ var Queue = function() {
     if (items > 0) {
       items--;
     }
-    var temp = storage[Math.min.apply(null, Object.keys(storage))];
-    delete storage[Math.min.apply(null, Object.keys(storage))];
+    var temp = storage[min];
+    delete storage[min];
+    min ++;
     return temp;
-
   };
 
   someInstance.size = function() {
