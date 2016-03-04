@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf8">
+<head>
+  <script src="../lib/jquery/jquery.js"></script>
+  <script src="../lib/underscore/underscore.js"></script>
+  <script src="../sprint-one/src/pseudoclassical/queue.js"></script>
+  <script src="../sprint-one/src/pseudoclassical/stack.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    $(function(){
+      // var stacks = [];
+      for (var i = 0; i < 10000000; i++) {
+        var stack = Stack();
+        // stacks.push(stack);
+        // $('<p>' + i.toString() + '</p>').appendTo(document.body);
+      }
+    });
+  </script>
+  <script type="text/javascript">
+    $(function(){
+      // var queues = [];
+      for (var i = 0; i < 10000000; i++) {
+        var queue = Queue();
+        // queues.push(queue);
+        // $('<p>' + i.toString() + '</p>').appendTo(document.body);
+      }
+    });
+  </script>
+</body>
+</html>
