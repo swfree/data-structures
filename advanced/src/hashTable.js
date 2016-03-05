@@ -2,6 +2,7 @@
 
 var HashTable = function() {
   this._limit = 8;
+  this._minSize = this._limit;
   this._storage = LimitedArray(this._limit);
   this._numOfKeys = 0;
   this.initializeStorage();
@@ -17,15 +18,15 @@ HashTable.prototype.initializeStorage = function() { // function for actually ch
 
 HashTable.prototype.insert = function(k, v, resizing) {
   resizing = resizing || false; // we're not resizing unless we explicitly pass in true
-  this._numOfKeys++;
-  if (!resizing) { // if we're in the middle of resizing...
-    this.checkSize(); // don't checkSize
-  }
   this.remove(k, resizing); // if we're resizing, remove won't checkSize either
   var index = getIndexBelowMaxForKey(k, this._limit); // if resize happens, we need the new index
   var temp = this._storage.get(index).slice();
   temp.push([k, v]);
   this._storage.set(index, temp);
+  this._numOfKeys++;
+  if (!resizing) { // if we're in the middle of resizing...
+    this.checkSize(); // don't checkSize
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -54,7 +55,7 @@ HashTable.prototype.remove = function(k, resizing) {
 HashTable.prototype.checkSize = function () {
   if (this._numOfKeys / this._limit > 0.75) {
     this.resize(2);
-  } else if (this._numOfKeys / this._limit < 0.25) {
+  } else if (this._numOfKeys / this._limit < 0.25 && this._limit > this._minSize) {
     this.resize(0.5);
   }
 };
